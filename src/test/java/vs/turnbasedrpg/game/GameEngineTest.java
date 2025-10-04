@@ -76,4 +76,23 @@ class GameEngineTest {
         assertThat(gameEngine.getEnemy().isDead()).isTrue();
         assertThat(gameEngine.getEnemy().getHealth()).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("Turn 1 - no game over")
+    void turn1() {
+        gameEngine.turn();
+        gameEngine.gameState();
+
+        assertThat(gameEngine.gameOver()).isFalse();
+    }
+
+    @Test
+    @DisplayName("Turns 7 - game over")
+    void turns7() {
+        for (int i = 0; i < 7; i++) {
+            gameEngine.turn();
+        }
+        gameEngine.gameState();
+        assertThat(gameEngine.gameOver()).isTrue();
+    }
 }
